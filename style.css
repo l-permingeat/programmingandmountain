@@ -1,0 +1,139 @@
+.block_page {
+    background-color: #22577A;
+    display: flex;
+    flex-direction: column;
+    border: blueviolet 2px solid;
+    height: 100%;
+}
+
+/*-------------------------header-----------------------*/
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #6F686D;
+    border: chartreuse 2px solid;
+    height: 200px;
+    width: 100%;
+}
+
+#div_header {
+    background-color: #c52698;
+    border: rgb(0, 17, 255) 2px solid;
+}
+
+header img {
+    width: 140px;
+    height: 140px;
+    margin: 10px 0px 10px 20px;
+    margin-left: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+}
+
+.nav1 ul {
+    display: flex;
+    margin-top: 50px;
+    margin-right: 65px;
+    list-style: none;
+}
+
+.nav1 li {
+    margin-left: 25px;
+}
+
+.nav1 a {
+    color: rgb(229, 229, 229);
+}
+
+/*-------------------------BANNIERE-----------------------*/
+
+#banniere_corps {
+    display: flex;
+    justify-content: center;
+    background-color: #4bc526;
+    width: 100%;
+    border: rgb(0, 17, 255) 2px solid;
+    height: 250px;
+}
+
+#banniere {
+    background-color: #2631c5;
+}
+
+/*-------------------------MAIN ACCUEIL-----------------------*/
+
+.main_marge {
+    margin: 0 10% 0 10%;
+
+}
+
+.article {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.article_corps {
+    padding-top: 2%;
+    flex-direction: column;
+    text-align: center;
+}
+
+.article_corps img {
+    width: 100%;
+    height: 220px;
+
+}
+
+/*-------------------------MAIN GALERIE-----------------------*/
+
+
+.galerie {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.galerie_image {
+    text-align: center;
+}
+
+.galerie_image img {
+    width: 230px;
+    height: 220px;
+}
+
+/*-------------------------MAIN jeux-----------------------*/
+
+.jeux_corps{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+   
+}
+
+.jeux_bloc{
+    background-color: #6F686D;
+    width: 100%;
+    height: 150px;
+    margin: 5px;
+}
+
+/*-------------------------FOOTER-----------------------*/
+
+footer {
+    height: 100px;
+    width: auto;
+    background-color: #6F686D;
+    display: flex;
+    justify-content: center;
+}
+
+#footer_corps {}
