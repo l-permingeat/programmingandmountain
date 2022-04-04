@@ -10,10 +10,11 @@
 header {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
     align-items: center;
     background-color: #6F686D;
     border: chartreuse 2px solid;
-    height: 200px;
+    height: 100%;
     width: 100%;
 }
 
@@ -55,14 +56,14 @@ nav {
 #banniere_corps {
     display: flex;
     justify-content: center;
-    background-color: #4bc526;
+    background-color: #6F686D;
     width: 100%;
     border: rgb(0, 17, 255) 2px solid;
     height: 250px;
 }
 
 #banniere {
-    background-color: #2631c5;
+
 }
 
 /*-------------------------MAIN ACCUEIL-----------------------*/
@@ -97,6 +98,7 @@ nav {
 .galerie {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
     margin-top: 5px;
 }
 
