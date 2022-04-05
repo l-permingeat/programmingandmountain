@@ -62,7 +62,14 @@ nav {
     height: 250px;
 }
 
-#banniere {
+#banniere{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+#banniere img{
+    width: 30%;
 
 }
 
