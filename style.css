@@ -16,6 +16,7 @@ header {
     border: chartreuse 2px solid;
     height: 100%;
     width: 100%;
+    padding-bottom: 20px;
 }
 
 #div_header {
@@ -36,19 +37,71 @@ nav {
     text-transform: uppercase;
 }
 
-.nav1 ul {
-    display: flex;
-    margin-top: 50px;
-    margin-right: 65px;
-    list-style: none;
+a {
+    color: inherit;
 }
 
-.nav1 li {
-    margin-left: 25px;
+#burger {
+    width: 30px;
+    height: 2px;
+    background: white;
+    display: inline-block;
+    position: relative;
 }
 
-.nav1 a {
-    color: rgb(229, 229, 229);
+#burger::before,
+#burger::after {
+    content: '';
+    width: 30px;
+    height: 2px;
+    background: white;
+    display: inline-block;
+    position: absolute;
+    transform-origin: center;
+    transition: all 0.3s ease;
+}
+
+#burger::before {
+    top: -7px;
+}
+
+#burger::after {
+    top: 7px;
+}
+
+#burger.open {
+    background: transparent;
+}
+
+#burger.open::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+#burger.open::after {
+    transform: rotate(-45deg);
+    top: 0;
+}
+
+ul {
+    background: pink;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 100%;
+    padding: 10px 0;
+    transform: scaleY(0);
+    transform-origin: center top;
+    transition: all 0.3s ease;
+}
+
+ul.open {
+    transform: scaleY(1);
+}
+
+ul li {
+    padding: 10px 0;
+    text-align: center
 }
 
 /*-------------------------BANNIERE-----------------------*/
@@ -58,7 +111,7 @@ nav {
     justify-content: center;
     margin-bottom: 5px;
     padding-bottom: 5px;
-   
+
 }
 
 #banniere {
@@ -71,7 +124,7 @@ nav {
 .fotorama {
     display: flex;
     justify-content: center;
-    
+
 }
 
 .refresh {
