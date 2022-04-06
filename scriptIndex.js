@@ -1,4 +1,14 @@
 $(document).ready(function () {
+
+    actualiser();
+
+    //Bouton actualiser pour remplir le feed
+    function actualiser() {
+        $('.refresh').click(function () {
+            apiJquery();
+        });
+    }
+
     function apiJquery() {
         $.ajax({
 
@@ -12,39 +22,34 @@ $(document).ready(function () {
             dataType: "json",
         })
 
-        //En cas de succés 
-        .done(function (response) {
-            console.log(response);
-            if (response) {
-                for (var i = 0; i < 7; i++) {
-                    populateArticle(response, i);
+            //En cas de succés 
+            .done(function (response) {
+                console.log(response);
+                if (response) {
+                    for (var i = 0; i < 7; i++) {
+                        populateArticle(response, i);
+                    }
                 }
-            }
-        }) // fin done
+            }) // fin done
 
-        //en cas d'échec
-        .fail(function (error) {
-            //alert("La requête a échouée" + JSON.stringify(error));
-            $(".main_marge").prepend('<h1></h1>');
-            $(".main_marge h1").text("La requête a échouée");
-            //$(".main_marge h1").delay(5000).fadeOut('slow');
-            $(".main_marge h1").delay(5000).fadeOut('slow', function () {
-                $(".main_marge h1").remove()
-            });
-        })
+            //en cas d'échec
+            .fail(function (error) {
+                //alert("La requête a échouée" + JSON.stringify(error));
+                $(".main_marge").prepend('<h1></h1>');
+                $(".main_marge h1").text("La requête a échouée");
+                //$(".main_marge h1").delay(5000).fadeOut('slow');
+                $(".main_marge h1").delay(5000).fadeOut('slow', function () {
+                    $(".main_marge h1").remove()
+                });
+            })
 
-        //code effectué en cas de succés et d'échec
-        .always(function () {
-            //alert("requête effectuée");
-        })
+            //code effectué en cas de succés et d'échec
+            .always(function () {
+                //alert("requête effectuée");
+            })
 
     }//fin function apiJquery
 
-
-    //Bouton actualiser pour remplir le feed
-    $('.refresh').click(function () {
-        apiJquery();
-    });
 
     // En attente
     $(".owl-carousel").owlCarousel({

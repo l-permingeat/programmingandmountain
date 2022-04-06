@@ -1,24 +1,29 @@
 
-let refresh=document.querySelector('.refresh');
-refresh.addEventListener("click",function () {
-    apiVanilla();
-})
+actualiser();
+
+function actualiser() {
+    let refresh = document.querySelector('.refresh');
+    refresh.addEventListener("click", function () {
+        apiVanilla();
+    })
+}
+
 
 function apiVanilla() {
     fetch("https://api.spaceflightnewsapi.net/v3/articles")
         .then(response => response.json())
         .then((json) => { console.log(json), createArticle(json) })
-        .catch((error) => {console.log("erreur : ", error), messageError()})
+        .catch((error) => { console.log("erreur : ", error), messageError() })
 
 
 }// fin function apiVanilla
-function messageError(){
+function messageError() {
     let main = document.querySelector('.main_marge');
     let titre = document.createElement("h4");
     titre.textContent = "La requête a échouée";
     main.prepend(titre);
     setTimeout(() => {
-       titre.remove();
+        titre.remove();
     }, 5000);
 
 }
