@@ -1,11 +1,8 @@
-
 actualiser();
 
 function actualiser() {
     let refresh = document.querySelector('.refresh');
-    refresh.addEventListener("click", function () {
-        apiVanilla();
-    })
+    refresh.addEventListener("click", apiVanilla)
 }
 
 

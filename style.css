@@ -56,27 +56,28 @@ nav {
 #banniere_corps {
     display: flex;
     justify-content: center;
-    background-color: #6F686D;
-    width: 100%;
-    border: rgb(0, 17, 255) 2px solid;
-    height: 250px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+   
 }
 
 #banniere {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
 }
 
-#banniere img {
-    width: 30%;
-
+.fotorama {
+    display: flex;
+    justify-content: center;
+    
 }
 
 .refresh {
     width: 20%;
     background-color: #c52698;
-    
+
 
 }
 

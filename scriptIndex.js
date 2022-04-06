@@ -27,7 +27,7 @@ $(document).ready(function () {
                 console.log(response);
                 if (response) {
                     for (var i = 0; i < 7; i++) {
-                        populateArticle(response, i);
+                        populateArticle(response[i]);
                     }
                 }
             }) // fin done
@@ -51,26 +51,20 @@ $(document).ready(function () {
     }//fin function apiJquery
 
 
-    // En attente
-    $(".owl-carousel").owlCarousel({
-        items: 3,
-        margin: 15,
-        autoplay: true,
-        autoWidth: true,
-    })
+   
 
-    function populateArticle(response, i) {
+    function populateArticle(article) {
         //créer une classe article_corps
         $(".article").append('<div class="article_corps"></div>');
         //image
-        $(".article .article_corps:last").html('<img src="' + response[i].imageUrl + '" alt="">');
+        $(".article .article_corps:last").html('<img src="' + article.imageUrl + '" alt="">');
         //  $(".article .article_corps:last img").attr('src',response[i].imageUrl);
         //titre
         $(".article .article_corps:last").prepend('<h3></h3>');
-        $(".article .article_corps:last h3").text(response[i].title);
+        $(".article .article_corps:last h3").text(article.title);
         //paragraphe
         $(".article .article_corps:last").append('<p></p>');
-        $(".article .article_corps:last p").text(response[i].summary);
+        $(".article .article_corps:last p").text(article.summary);
     }
 
 }); // fin ready function //
