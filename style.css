@@ -2,7 +2,6 @@
     background-color: #22577A;
     display: flex;
     flex-direction: column;
-    border: blueviolet 2px solid;
     height: 100%;
 }
 
@@ -13,7 +12,6 @@ header {
     flex-direction: column;
     align-items: center;
     background-color: #6F686D;
-    border: chartreuse 2px solid;
     height: 100%;
     width: 100%;
     padding-bottom: 20px;
@@ -31,77 +29,57 @@ header img {
     margin-left: 20px;
 }
 
-nav {
-    display: flex;
-    justify-content: space-between;
-    text-transform: uppercase;
+/*-------------------------MENU DEROULANT-----------------------*/
+
+/* Le Bouton menu*/
+.dropbtn {
+    background-color: #22577A;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
 }
 
-a {
-    color: inherit;
+/* Effet au survol et au moment du clic (focus) */
+.dropbtn:hover,
+.dropbtn:focus {
+    background-color: #2980B9;
 }
 
-#burger {
-    width: 30px;
-    height: 2px;
-    background: white;
-    display: inline-block;
+/* la div qui contient le menu déroulant */
+.dropdown {
+    margin: 5px;
     position: relative;
-}
-
-#burger::before,
-#burger::after {
-    content: '';
-    width: 30px;
-    height: 2px;
-    background: white;
     display: inline-block;
+}
+
+/* le contenu déroulant qui par défaut est caché. BoxShadow donne un effet "carte, z-index permet de le mettre en premier" */
+.dropdown-content {
+    display: none;
     position: absolute;
-    transform-origin: center;
-    transition: all 0.3s ease;
+    background-color: #2980B9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
 }
 
-#burger::before {
-    top: -7px;
+/* Les liens de la liste déroulante */
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
 }
 
-#burger::after {
-    top: 7px;
+/* Les liens changent de couleurs au survol*/
+.dropdown-content a:hover {
+    background-color: #ddd
 }
 
-#burger.open {
-    background: transparent;
-}
-
-#burger.open::before {
-    transform: rotate(45deg);
-    top: 0;
-}
-
-#burger.open::after {
-    transform: rotate(-45deg);
-    top: 0;
-}
-
-ul {
-    background: pink;
-    position: absolute;
-    width: 100%;
-    left: 0;
-    top: 100%;
-    padding: 10px 0;
-    transform: scaleY(0);
-    transform-origin: center top;
-    transition: all 0.3s ease;
-}
-
-ul.open {
-    transform: scaleY(1);
-}
-
-ul li {
-    padding: 10px 0;
-    text-align: center
+/*  class rajouté dans le js, le display passe en block pour au moment où l'utilisateur click */
+.show {
+    display: block;
 }
 
 /*-------------------------BANNIERE-----------------------*/

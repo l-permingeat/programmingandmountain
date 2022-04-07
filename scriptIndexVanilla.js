@@ -11,9 +11,9 @@ function apiVanilla() {
         .then(response => response.json())
         .then((json) => { console.log(json), createArticle(json) })
         .catch((error) => { console.log("erreur : ", error), messageError() })
-
-
 }// fin function apiVanilla
+
+
 function messageError() {
     let main = document.querySelector('.main_marge');
     let titre = document.createElement("h4");
@@ -22,8 +22,9 @@ function messageError() {
     setTimeout(() => {
         titre.remove();
     }, 5000);
-
 }
+
+
 //créer les articles
 function createArticle(json) {
     //selection de mon élément parent
