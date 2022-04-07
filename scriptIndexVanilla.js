@@ -1,4 +1,8 @@
-actualiser();
+window.addEventListener("DOMContentLoaded", (event) => {
+    actualiser();
+    form();
+});
+let clickOn = false;
 
 function actualiser() {
     let refresh = document.querySelector('.refresh');
@@ -7,10 +11,15 @@ function actualiser() {
 
 
 function apiVanilla() {
-    fetch("https://api.spaceflightnewsapi.net/v3/articles")
-        .then(response => response.json())
-        .then((json) => { console.log(json), createArticle(json) })
-        .catch((error) => { console.log("erreur : ", error), messageError() })
+    if (clickOn === false) {
+        fetch("https://api.spaceflightnewsapi.net/v3/articles")
+            .then(response => response.json())
+            .then((json) => { console.log(json), createArticles(json) })
+            .catch((error) => { console.log("erreur : ", error), messageError() })
+        clickOn = true;
+    } else {
+        messageDejaActualiser();
+    }
 }// fin function apiVanilla
 
 
@@ -24,38 +33,51 @@ function messageError() {
     }, 5000);
 }
 
+function messageDejaActualiser() {
+    let main = document.querySelector('.main_marge');
+    let titre = document.createElement("h3");
+    titre.textContent = "Vous avez déja actualisé";
+    main.prepend(titre);
+    setTimeout(() => {
+        titre.remove();
+    }, 5000);
+}
+
 
 //créer les articles
-function createArticle(json) {
+function createArticles(articles) {
     //selection de mon élément parent
-    if (json) {
+    if (articles) {
         for (var i = 0; i < 7; i++) {
-            //CREER DIV
-            let article = document.querySelector('.article');
-            //création de la div qui va contenir les articles
-            let article_corps = document.createElement("div");
-            //ajout de la classe à la div
-            article_corps.classList.add("article_corps");
-            //ajout de la div à la div parent
-            article.append(article_corps);
-
-            //CREER TITRE
-            let titre = document.createElement("h3");
-            titre.textContent = json[i].title;
-            article_corps.append(titre);
-
-            //CREER IMAGE
-            let img = document.createElement("img");
-            img.setAttribute('src', json[i].imageUrl)
-            article_corps.append(img);
-
-            //CREER PARAGRAPHE
-            let para = document.createElement("p");
-            para.textContent = json[i].summary;
-            article_corps.append(para);
-
+            createArticle(articles[i])
         }
     }
+}
+
+function createArticle(art) {
+    //CREER DIV
+    let article = document.querySelector('.article');
+    //création de la div qui va contenir les articles
+    let article_corps = document.createElement("div");
+    //ajout de la classe à la div
+    article_corps.classList.add("article_corps");
+    //ajout de la div à la div parent
+    article.append(article_corps);
+
+    //CREER TITRE
+    let titre = document.createElement("h3");
+    titre.textContent = art.title;
+    article_corps.append(titre);
+
+    //CREER IMAGE
+    let img = document.createElement("img");
+    img.setAttribute('src', art.imageUrl)
+    article_corps.append(img);
+
+    //CREER PARAGRAPHE
+    let para = document.createElement("p");
+    para.textContent = art.summary;
+    article_corps.append(para);
 }
 
 async function apiVanillaAttente() {
@@ -72,11 +94,17 @@ async function apiVanillaAttente() {
 }
 
 
-
-
-
-
-
-
-
+//fonction qui détecte quand il y a un clic sur mon form
+function form() {
+    let form = document.querySelector('#btnFormulaire');
+    form.addEventListener("click", function (event) {
+        event.preventDefault();
+        let tabForm = {
+            title: document.forms["form"]["titre"].value,
+            imageUrl: document.forms["form"]["image"].value,
+            summary: document.forms["form"]["article"].value
+        }
+        createArticle(tabForm);
+    })
+}
 

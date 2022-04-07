@@ -51,8 +51,6 @@ $(document).ready(function () {
     }//fin function apiJquery
 
 
-   
-
     function populateArticle(article) {
         //créer une classe article_corps
         $(".article").append('<div class="article_corps"></div>');
