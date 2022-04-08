@@ -92,13 +92,6 @@ header img {
 
 }
 
-#banniere {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-}
-
 .fotorama {
     display: flex;
     justify-content: center;
