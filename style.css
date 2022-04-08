@@ -146,7 +146,7 @@ header img {
 
 /*-------------------------MAIN FORMULAIRE-----------------------*/
 
-.formulaire{
+.formulaire {
     margin: 5px;
     background-color: #6F686D;
     text-align: center;
@@ -154,22 +154,49 @@ header img {
 
 /*-------------------------MAIN GALERIE-----------------------*/
 
+#optionAffichage {}
 
-.galerie {
+button {
+    background-color: #22577A;
+    margin: 5px;
+}
+
+#optionAffichage img {
+    width: 50px;
+    margin: 10px;
+}
+
+.galerieMosaique {
+   /* background-color: #6F686D;*/
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.galerieMosaique img {
+    width: 400px;
+    padding: 10px;
+    /*background-color: aliceblue;*/
+}
+
+.galerieColonne {
+    display: flex;
+    /* flex-wrap: wrap;*/
     flex-direction: column;
+    align-items: center;
     margin-top: 5px;
 }
 
-.galerie_image {
-    text-align: center;
+.galerieColonne img {
+    width: 80%;
+    padding: 10px;
 }
 
-.galerie_image img {
-    width: 230px;
-    height: 220px;
-}
+
+/*.galerie_image img {
+    width: 400px;
+    height: 380px;
+}*/
 
 /*-------------------------MAIN jeux-----------------------*/
 

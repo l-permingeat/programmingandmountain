@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css" />
     <script src="scriptCommun.js"></script>
-    <link rel="stylesheet" href="scriptGalerie.js" />
+    <script src="scriptGalerie.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
 
@@ -27,8 +27,8 @@
                 <div class="dropdown">
                     <button onclick="myFunction()" class="dropbtn">Menu</button>
                     <div id="myDropdown" class="dropdown-content">
-                        <a href="indexVanilla.html">Index JS</a>
-                        <a href="index.html">Index jQuery</a>
+                        <a href="index.html">Index JS Vanilla</a>
+                        <a href="indexJquery.html">Index jQuery</a>
                         <a href="galerie.html">Galerie</a>
                         <a href="jeux.html">Jeux</a>
                     </div>
@@ -48,21 +48,35 @@
 
         </div>
         <!-----------------------MAIN---------------------->
+        <div id="optionAffichage">
+            <button class="btnColonne">
+                <img src="https://cdn-icons-png.flaticon.com/512/3603/3603432.png" alt="Affichage colonne">
+            </button>
+            <button class="btnMosaique">
+                <img src="https://cdn-icons-png.flaticon.com/512/3603/3603182.png" alt="Affichage en mosaïque">
+            </button>
+        </div>
 
         <div class="main_marge">
-            <div class="galerie">
-                <div class="galerie_image">
-                    <img src="image/image4.jpg">
-                    <p>Petit texte sous l'image</p>
-                </div>
-                <div class="galerie_image">
-                    <img src="image/image4.jpg">
-                    <p>Petit texte sous l'image</p>
-                </div>
-                <div class="galerie_image">
-                    <img src="image/image4.jpg">
-                    <p>Petit texte sous l'image</p>
-                </div>
+            <div class="galerieMosaique" id="galerieId">
+                <img src="image/image4.jpg">
+
+                <img src="image/image4.jpg">
+
+                <img src="image/image4.jpg">
+
+                <img src="image/image4.jpg">
+
+                <img src="image/image4.jpg">
+
+                <img src="image/image4.jpg">
+
+                <img src="image/image4.jpg">
+
+                <img src="image/image4.jpg">
+
+                <img src="image/image4.jpg">
+
             </div>
 
 

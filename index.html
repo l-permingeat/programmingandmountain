@@ -5,13 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil Programming And Mountain</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Accueil en JS Vanilla</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="scriptCommun.js"></script>
-    <script src="scriptIndex.js"></script>
+    <link rel="stylesheet" href="scriptIndexVanilla.js" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+    
 </head>
 
 <body>
@@ -25,9 +23,9 @@
             </div>
             <nav>
                 <div class="dropdown">
-                    <button onclick="myFunction()" class="dropbtn">Menu</button>
+                    <button class="dropbtn">Menu</button>
                     <div id="myDropdown" class="dropdown-content">
-                        <a href="indexVanilla.html">Index JS</a>
+                        <a href="indexJquery.html">Index jQuery</a>
                         <a href="galerie.html">Galerie</a>
                         <a href="jeux.html">Jeux</a>
                     </div>
@@ -35,9 +33,6 @@
             </nav>
 
         </header>
-
-
-       
 
         <!-----------------------BANNIERE---------------------->
 
@@ -50,8 +45,6 @@
 
         </div>
 
-
-
         <!-----------------------MAIN---------------------->
 
 
@@ -60,34 +53,27 @@
             <div class="main_marge">
                 <button class="refresh" type="bouton" value="Actualiser">Actualiser</button>
                 <div class="article">
-                    <!-- <div class="article_corps">
-                        <h3>Titre de l'article</h3>
-                        <img src="image/image4.jpg">
-                        <p>Mon premier article</p>
-                    </div>
-                    <div class="article_corps">
-                        <h3>Titre de l'article</h3>
-                        <img src="image/image4.jpg">
-                        <p>Mon deuxième article</p>
-                    </div>-->
+                    
                 </div>
 
 
                 <div class="formulaire">
                     <h5>Création d'un article</h5>
-                    <form method="" action="">
+                    <form id="form"method="post" action="#">
                         <fieldset>
-                            <label> votre titre : </label>
-                            <input type="text" name="titre" placeholder="Saisir votre titre">
+                            <label> Votre titre : </label>
+                            <input id="titre" value=""type="text" name="titre" placeholder="Saisir votre titre" required>
                         </fieldset>
                         <fieldset>
-                            <label> votre image : </label>
-                            <input type="text" name="titre" placeholder="Télécharger votre image">
+                            <label> Votre image : </label>
+                            <input id="image"value=""type="text" name="image" placeholder="Télécharger votre image"required>
                         </fieldset>
                         <fieldset>
-                            <label> votre image : </label>
-                            <textarea name="article" placeholder="Saisir votre texte"></textarea>
+                            <label> Votre texte : </label>
+                            <textarea  id="article" value=""name="article" placeholder="Saisir votre texte"required></textarea>
                         </fieldset>
+                        <fieldset></fieldset>
+                        <button type="submit"id="btnFormulaire" name="formulaire">Envoyer</button>
                     </form>
 
 
@@ -109,6 +95,10 @@
         </footer>
 
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="scriptIndexVanilla.js" defer></script>
+    <script src="scriptCommun.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
     <!--Fin block_page-->
 </body>
 
