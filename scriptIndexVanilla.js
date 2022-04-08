@@ -93,18 +93,37 @@ async function apiVanillaAttente() {
     }
 }
 
-
 //fonction qui détecte quand il y a un clic sur mon form
 function form() {
     let form = document.querySelector('#btnFormulaire');
+    //variable regex pour vérifier URL
+    let regexUrl = /[(http(s)?):\/\/(www\.)?\w-/=#%&\.\?]{2,}\.[a-z]{2,}([\w-/=#%&\.\?]*)/gi;
+    //detection de l'évènement click sur le bouton envoyer
     form.addEventListener("click", function (event) {
+        //Permet de ne pas re actualiser le form à chaque click sur envoyer
         event.preventDefault();
-        let tabForm = {
-            title: document.forms["form"]["titre"].value,
-            imageUrl: document.forms["form"]["image"].value,
-            summary: document.forms["form"]["article"].value
+        //si le formulaire n'est pas vide
+        if (form.checkValidity) {
+            //Je créé un objet avec les données de mon form
+            let tabForm = {
+                title: document.forms["form"]["titre"].value,
+                imageUrl: document.forms["form"]["image"].value,
+                summary: document.forms["form"]["article"].value
+            }
+            //je créé une var avec les infos de mon url pour ensuite les vérifier plus facilement
+            let url = document.forms["form"]["image"].value;
+            //si le format de mon URL est bon, je créé l'article
+            if (regexUrl.test(url)) {
+                createArticle(tabForm);
+                let article = document.querySelector('.article');
+                let lastArticle = article.lastChild;
+                article.prepend(lastArticle);
+                document.getElementById("form").reset();
+                //si le format est pas bo, alors un message d'erreur apparait
+            } else {
+                window.alert("Adresse URL image NON VALIDE");
+            }
         }
-        createArticle(tabForm);
     })
 }
 
