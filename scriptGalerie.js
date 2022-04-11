@@ -1,17 +1,25 @@
 window.addEventListener("DOMContentLoaded", (event) => {
+  //dans le cas où le click est sur le bouton colonne
   let btnColonne = document.querySelector('.btnColonne');
   btnColonne.addEventListener("click", function () {
     affichageColonne("Colonne");
   })
-
+  //dans le cas où le click est sur le bouton mosaïque
   let btnMosaique = document.querySelector('.btnMosaique');
   btnMosaique.addEventListener("click", function () {
     affichageColonne("Mosaique");
   })
 
-  formPhoto()
+  formPhoto();
+  deleteImgAddManually();
+
+
+
+
 
 });
+
+//***********Function affichage Galerie ou Colonne **************************/
 
 function affichageColonne(typeBouton) {
 
@@ -33,6 +41,9 @@ function affichageColonne(typeBouton) {
   }
 }
 
+
+//***********Function ajouter une photo à partir d'un formulaire dynamique *********************/
+
 function formPhoto() {
   let form = document.querySelector('#btnFormPhoto');
 
@@ -48,6 +59,8 @@ function formPhoto() {
 
     //Je remet à 0 l'input "combien de photos voulez vous ajouter ?"
     document.getElementById("formulaireGallerie").reset();
+
+
 
   })
 
@@ -90,20 +103,52 @@ function addPhoto(nbPhoto) {
   let formHtml = document.querySelector('#btnEnvoieUrl');
   formHtml.addEventListener("click", function (event) {
     event.preventDefault();
-    console.log('URL', document.forms["formulaireGallerie"]["image0"].value);
+
     for (var i = 0; i < nbPhoto; i++) {
       let galerie = document.querySelector('.galerieMosaique');
       let image = document.createElement("img");
+      //Recuperation de la class (colonne ou mosaique)
+      let classType = galerieId.className;
       image.setAttribute('src', document.forms["formulaireGallerie"]["image" + i].value);
-      galerie.prepend(image);
+      image.classList.add("ajoutManuel");
+
+      //Condition pour ajout l'image à la div en fonction de la class (colonne ou mosaique)
+      if (classType === "galerieMosaique") {
+        galerie.prepend(image);
+      } else {
+        let galerieColonne = document.querySelector('.galerieColonne');
+        galerieColonne.prepend(image);
+      }
     }
+
     //Je supprime les inputs qui ajoute les formulaire
     let divUrl = document.querySelector(".urlFieldset");
     divUrl.remove();
     //while (divUrl.hasChildNodes()) {
-      //divUrl.removeChild(divUrl.firstChild);
+    //divUrl.removeChild(divUrl.firstChild);
     //}
+
+
   })
+}
+
+//***********Function supprimer une photo *********************/
+
+function deleteImgAddManually() {
+
+  let imgHtml = document.getElementById('galerieId');
+  console.log('Mon image', imgHtml);
+  imgHtml.addEventListener("click", function (event) {
+    console.log(event.target.tagName);
+    console.log(event);
+    let pointerEvent=[event];
+    console.log(pointerEvent);
+    //if (event.target.tagName === IMG) {
+      //event.target.remove();
+    //}
+
+  })
+
 
 }
 
