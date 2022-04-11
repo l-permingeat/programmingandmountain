@@ -40,9 +40,14 @@ function formPhoto() {
     event.preventDefault();
 
     let nbInput = document.forms["formulaireGallerie"]["photoUrl"].value;
+    //J'appelle la fonction qui créée les différents élément du form pour ajouter l'url
     addInput(nbInput);
 
+    //J'appelle la fonction qui va ajouter les photos à la galerie
     addPhoto(nbInput);
+
+    //Je remet à 0 l'input "combien de photos voulez vous ajouter ?"
+    document.getElementById("formulaireGallerie").reset();
 
   })
 
@@ -51,11 +56,14 @@ function formPhoto() {
 //ajout des inputs suivant le choix du nb de photo à ajouter
 function addInput(nbInput) {
   let formHtml = document.querySelector('#formulaireGallerie');
+  let divUrl = document.createElement("div");
+  divUrl.classList.add("urlFieldset");
+  formHtml.append(divUrl);
 
   //ajout du titre des URL
   let titreAjoutUrl = document.createElement("h3");
   titreAjoutUrl.textContent = "URL image :";
-  formHtml.append(titreAjoutUrl);
+  divUrl.append(titreAjoutUrl);
 
   //ajout des inputs URL
   for (var i = 0; i < nbInput; i++) {
@@ -64,7 +72,7 @@ function addInput(nbInput) {
     inputHtml.setAttribute('name', "image");
     inputHtml.setAttribute('value', "");
     inputHtml.setAttribute('placeHolder', "Url image");
-    formHtml.append(inputHtml);
+    divUrl.append(inputHtml);
   }
 
   //ajout du bouton envoyer URL
@@ -73,7 +81,7 @@ function addInput(nbInput) {
   bntEnvoyerUrlHtml.setAttribute('id', "btnEnvoieUrl");
   bntEnvoyerUrlHtml.setAttribute('name', "btnEnvoieUrl");
   bntEnvoyerUrlHtml.textContent = "Envoyer";
-  formHtml.append(bntEnvoyerUrlHtml);
+  divUrl.append(bntEnvoyerUrlHtml);
 }
 
 
@@ -87,9 +95,15 @@ function addPhoto(nbPhoto) {
       let galerie = document.querySelector('.galerieMosaique');
       let image = document.createElement("img");
       image.setAttribute('src', document.forms["formulaireGallerie"]["image" + i].value);
-      galerie.append(image);
+      galerie.prepend(image);
     }
-
+    //Je supprime les inputs qui ajoute les formulaire
+    let divUrl = document.querySelector(".urlFieldset");
+    divUrl.remove();
+    //while (divUrl.hasChildNodes()) {
+      //divUrl.removeChild(divUrl.firstChild);
+    //}
   })
+
 }
 
