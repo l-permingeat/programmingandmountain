@@ -2,26 +2,21 @@ window.addEventListener("DOMContentLoaded", (event) => {
   //dans le cas où le click est sur le bouton colonne
   let btnColonne = document.querySelector('.btnColonne');
   btnColonne.addEventListener("click", function () {
-    affichageColonne("Colonne");
+    affichageGalerie("Colonne");
   })
   //dans le cas où le click est sur le bouton mosaïque
   let btnMosaique = document.querySelector('.btnMosaique');
   btnMosaique.addEventListener("click", function () {
-    affichageColonne("Mosaique");
+    affichageGalerie("Mosaique");
   })
 
   formPhoto();
-
-
-
-
-
 
 });
 
 //***********Function affichage Galerie ou Colonne **************************/
 
-function affichageColonne(typeBouton) {
+function affichageGalerie(typeBouton) {
 
   if (typeBouton === "Colonne") {
     document.getElementById("galerieId").classList.replace("galerieMosaique", "galerieColonne");
@@ -140,23 +135,10 @@ function addPhoto(nbPhoto) {
     //divUrl.removeChild(divUrl.firstChild);
     //}
 
-    deleteImgAddManually();
+    let galerieDiv = document.querySelectorAll('#galerieId img');
+    deleteItemAddManuel('ajoutManuel',galerieDiv);
 
 
   })
-}
-
-//***********Function supprimer une photo *********************/
-
-function deleteImgAddManually() {
-  let galerieDiv = document.querySelectorAll('#galerieId img');
-  for (let i = 0; i < galerieDiv.length; i++) {
-    console.log('Nom de la classe : ', galerieDiv[i].className);
-    if (galerieDiv[i].className == "ajoutManuel") {
-      galerieDiv[i].addEventListener("click", function () {
-        galerieDiv[i].remove();
-      })
-    }
-  }
 }
 

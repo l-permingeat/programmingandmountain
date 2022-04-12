@@ -98,13 +98,14 @@ function form() {
     let formBtn = document.querySelector('#btnFormulaire');
     //variable regex pour vérifier URL
     let regexUrl = /[(http(s)?):\/\/(www\.)?\w-/=#%&\.\?]{2,}\.[a-z]{2,}([\w-/=#%&\.\?]*)/gi;
+    let form=document.getElementById('form');
 
     //detection de l'évènement click sur le bouton envoyer
     formBtn.addEventListener("click", function (event) {
         //Permet de ne pas re actualiser le form à chaque click sur envoyer
         event.preventDefault();
         //si le formulaire n'est pas vide
-        if (document.forms.checkValidity) {
+        if (form.checkValidity()) {
             //Je créé un objet avec les données de mon form
             let tabForm = {
                 title: document.forms["form"]["titre"].value,
@@ -128,19 +129,9 @@ function form() {
         }else{
             window.alert("Formulaire vide");
         }
-        deleteArticleAddManuel()
+        let articleDiv = document.querySelectorAll('.article div');
+        deleteItemAddManuel('article_corps ajoutManuel',articleDiv)
     })
 }
 
-function deleteArticleAddManuel() {
-    let articleDiv = document.querySelectorAll('.article div');
-    for (let i = 0; i < articleDiv.length; i++) {
-        console.log('Nom de la classe : ', articleDiv[i].className);
-        if (articleDiv[i].className === "article_corps ajoutManuel") {
-            articleDiv[i].addEventListener("click", function () {
-                articleDiv[i].remove();
-            })
-        }//fin si
-    }//fin for
-}//fin function
 
