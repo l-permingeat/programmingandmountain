@@ -95,15 +95,16 @@ async function apiVanillaAttente() {
 
 //fonction qui détecte quand il y a un clic sur mon form
 function form() {
-    let form = document.querySelector('#btnFormulaire');
+    let formBtn = document.querySelector('#btnFormulaire');
     //variable regex pour vérifier URL
     let regexUrl = /[(http(s)?):\/\/(www\.)?\w-/=#%&\.\?]{2,}\.[a-z]{2,}([\w-/=#%&\.\?]*)/gi;
+
     //detection de l'évènement click sur le bouton envoyer
-    form.addEventListener("click", function (event) {
+    formBtn.addEventListener("click", function (event) {
         //Permet de ne pas re actualiser le form à chaque click sur envoyer
         event.preventDefault();
         //si le formulaire n'est pas vide
-        if (form.checkValidity) {
+        if (document.forms.checkValidity) {
             //Je créé un objet avec les données de mon form
             let tabForm = {
                 title: document.forms["form"]["titre"].value,
@@ -117,13 +118,29 @@ function form() {
                 createArticle(tabForm);
                 let article = document.querySelector('.article');
                 let lastArticle = article.lastChild;
+                lastArticle.classList.add('ajoutManuel');
                 article.prepend(lastArticle);
                 document.getElementById("form").reset();
                 //si le format est pas bo, alors un message d'erreur apparait
             } else {
                 window.alert("Adresse URL image NON VALIDE");
             }
+        }else{
+            window.alert("Formulaire vide");
         }
+        deleteArticleAddManuel()
     })
 }
+
+function deleteArticleAddManuel() {
+    let articleDiv = document.querySelectorAll('.article div');
+    for (let i = 0; i < articleDiv.length; i++) {
+        console.log('Nom de la classe : ', articleDiv[i].className);
+        if (articleDiv[i].className === "article_corps ajoutManuel") {
+            articleDiv[i].addEventListener("click", function () {
+                articleDiv[i].remove();
+            })
+        }//fin si
+    }//fin for
+}//fin function
 

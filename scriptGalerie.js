@@ -1,17 +1,25 @@
 window.addEventListener("DOMContentLoaded", (event) => {
+  //dans le cas où le click est sur le bouton colonne
   let btnColonne = document.querySelector('.btnColonne');
   btnColonne.addEventListener("click", function () {
     affichageColonne("Colonne");
   })
-
+  //dans le cas où le click est sur le bouton mosaïque
   let btnMosaique = document.querySelector('.btnMosaique');
   btnMosaique.addEventListener("click", function () {
     affichageColonne("Mosaique");
   })
 
-  formPhoto()
+  formPhoto();
+
+
+
+
+
 
 });
+
+//***********Function affichage Galerie ou Colonne **************************/
 
 function affichageColonne(typeBouton) {
 
@@ -33,6 +41,9 @@ function affichageColonne(typeBouton) {
   }
 }
 
+
+//***********Function ajouter une photo à partir d'un formulaire dynamique *********************/
+
 function formPhoto() {
   let form = document.querySelector('#btnFormPhoto');
 
@@ -48,6 +59,8 @@ function formPhoto() {
 
     //Je remet à 0 l'input "combien de photos voulez vous ajouter ?"
     document.getElementById("formulaireGallerie").reset();
+
+
 
   })
 
@@ -87,23 +100,63 @@ function addInput(nbInput) {
 
 
 function addPhoto(nbPhoto) {
+  let regexUrl = /[(http(s)?):\/\/(www\.)?\w-/=#%&\.\?]{2,}\.[a-z]{2,}([\w-/=#%&\.\?]*)/gi;
   let formHtml = document.querySelector('#btnEnvoieUrl');
+
   formHtml.addEventListener("click", function (event) {
     event.preventDefault();
-    console.log('URL', document.forms["formulaireGallerie"]["image0"].value);
-    for (var i = 0; i < nbPhoto; i++) {
-      let galerie = document.querySelector('.galerieMosaique');
-      let image = document.createElement("img");
-      image.setAttribute('src', document.forms["formulaireGallerie"]["image" + i].value);
-      galerie.prepend(image);
-    }
+
+      for (var i = 0; i < nbPhoto; i++) {
+        let galerie = document.querySelector('.galerieMosaique');
+        let image = document.createElement("img");
+        let url = document.forms["formulaireGallerie"]["image" + i].value
+        //Recuperation de la class (colonne ou mosaique)
+        let classType = galerieId.className;
+
+        //Condition pour verifier si l'url est bonne
+        if (regexUrl.test(url)) {
+
+          image.setAttribute('src', document.forms["formulaireGallerie"]["image" + i].value);
+          image.classList.add("ajoutManuel");
+
+          //Condition pour ajout l'image à la div en fonction de la class (colonne ou mosaique)
+          if (classType === "galerieMosaique") {
+            galerie.prepend(image);
+          } else {
+            let galerieColonne = document.querySelector('.galerieColonne');
+            galerieColonne.prepend(image);
+          }
+
+        } else {
+          window.alert("Adresse URL image NON VALIDE");
+        }
+      }
+    
+
     //Je supprime les inputs qui ajoute les formulaire
     let divUrl = document.querySelector(".urlFieldset");
     divUrl.remove();
     //while (divUrl.hasChildNodes()) {
-      //divUrl.removeChild(divUrl.firstChild);
+    //divUrl.removeChild(divUrl.firstChild);
     //}
-  })
 
+    deleteImgAddManually();
+
+
+  })
+}
+
+//***********Function supprimer une photo *********************/
+
+function deleteImgAddManually() {
+  let galerieDiv = document.querySelectorAll('#galerieId img');
+  for (let i = 0; i < galerieDiv.length; i++) {
+    console.log('Nom de la classe : ', galerieDiv[i].className);
+    if (galerieDiv[i].className == "ajoutManuel") {
+      galerieDiv[i].addEventListener("click", function () {
+        galerieDiv[i].remove();
+      })
+    }
+  }
 }
 
