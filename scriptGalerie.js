@@ -1,4 +1,4 @@
-window.addEventListener("DOMContentLoaded", (event) => {
+window.addEventListener("DOMContentLoaded", () => {
   //dans le cas où le click est sur le bouton colonne
   let btnColonne = document.querySelector('.btnColonne');
   btnColonne.addEventListener("click", function () {
@@ -123,7 +123,14 @@ function addPhoto(nbPhoto) {
           }
 
         } else {
-          window.alert("Adresse URL image NON VALIDE");
+            let parent = document.querySelector('#formulaireGallerie');
+            let message = document.createElement("h3");
+            message.textContent = "URL image non correcte";
+            parent.prepend(message);
+            setTimeout(() => {
+                message.remove();
+            }, 5000);
+        
         }
       }
     

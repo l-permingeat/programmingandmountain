@@ -124,14 +124,29 @@ function form() {
                 document.getElementById("form").reset();
                 //si le format est pas bo, alors un message d'erreur apparait
             } else {
-                window.alert("Adresse URL image NON VALIDE");
+                messageErreur();
             }
         }else{
-            window.alert("Formulaire vide");
+            let parent = document.querySelector('.formulaire');
+            let message = document.createElement("h3");
+            message.textContent = "Le formulaire doit être complété intégralement";
+            parent.prepend(message);
+            setTimeout(() => {
+                message.remove();
+            }, 5000);
         }
         let articleDiv = document.querySelectorAll('.article div');
         deleteItemAddManuel('article_corps ajoutManuel',articleDiv)
     })
 }
 
+function messageErreur() {
+    let parent = document.querySelector('.urlImage');
+    let message = document.createElement("h3");
+    message.textContent = "L'URL n'est pas correcte";
+    parent.prepend(message);
+    setTimeout(() => {
+        message.remove();
+    }, 5000);
+}
 
