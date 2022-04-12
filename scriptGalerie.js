@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   })
 
   formPhoto();
-  deleteImgAddManually();
+
 
 
 
@@ -100,26 +100,38 @@ function addInput(nbInput) {
 
 
 function addPhoto(nbPhoto) {
+  let regexUrl = /[(http(s)?):\/\/(www\.)?\w-/=#%&\.\?]{2,}\.[a-z]{2,}([\w-/=#%&\.\?]*)/gi;
   let formHtml = document.querySelector('#btnEnvoieUrl');
+
   formHtml.addEventListener("click", function (event) {
     event.preventDefault();
 
-    for (var i = 0; i < nbPhoto; i++) {
-      let galerie = document.querySelector('.galerieMosaique');
-      let image = document.createElement("img");
-      //Recuperation de la class (colonne ou mosaique)
-      let classType = galerieId.className;
-      image.setAttribute('src', document.forms["formulaireGallerie"]["image" + i].value);
-      image.classList.add("ajoutManuel");
+      for (var i = 0; i < nbPhoto; i++) {
+        let galerie = document.querySelector('.galerieMosaique');
+        let image = document.createElement("img");
+        let url = document.forms["formulaireGallerie"]["image" + i].value
+        //Recuperation de la class (colonne ou mosaique)
+        let classType = galerieId.className;
 
-      //Condition pour ajout l'image à la div en fonction de la class (colonne ou mosaique)
-      if (classType === "galerieMosaique") {
-        galerie.prepend(image);
-      } else {
-        let galerieColonne = document.querySelector('.galerieColonne');
-        galerieColonne.prepend(image);
+        //Condition pour verifier si l'url est bonne
+        if (regexUrl.test(url)) {
+
+          image.setAttribute('src', document.forms["formulaireGallerie"]["image" + i].value);
+          image.classList.add("ajoutManuel");
+
+          //Condition pour ajout l'image à la div en fonction de la class (colonne ou mosaique)
+          if (classType === "galerieMosaique") {
+            galerie.prepend(image);
+          } else {
+            let galerieColonne = document.querySelector('.galerieColonne');
+            galerieColonne.prepend(image);
+          }
+
+        } else {
+          window.alert("Adresse URL image NON VALIDE");
+        }
       }
-    }
+    
 
     //Je supprime les inputs qui ajoute les formulaire
     let divUrl = document.querySelector(".urlFieldset");
@@ -128,6 +140,8 @@ function addPhoto(nbPhoto) {
     //divUrl.removeChild(divUrl.firstChild);
     //}
 
+    deleteImgAddManually();
+
 
   })
 }
@@ -135,20 +149,14 @@ function addPhoto(nbPhoto) {
 //***********Function supprimer une photo *********************/
 
 function deleteImgAddManually() {
-
-  let imgHtml = document.getElementById('galerieId');
-  console.log('Mon image', imgHtml);
-  imgHtml.addEventListener("click", function (event) {
-    console.log(event.target.tagName);
-    console.log(event);
-    let pointerEvent=[event];
-    console.log(pointerEvent);
-    //if (event.target.tagName === IMG) {
-      //event.target.remove();
-    //}
-
-  })
-
-
+  let galerieDiv = document.querySelectorAll('#galerieId img');
+  for (let i = 0; i < galerieDiv.length; i++) {
+    console.log('Nom de la classe : ', galerieDiv[i].className);
+    if (galerieDiv[i].className == "ajoutManuel") {
+      galerieDiv[i].addEventListener("click", function () {
+        galerieDiv[i].remove();
+      })
+    }
+  }
 }
 
