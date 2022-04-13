@@ -95,13 +95,13 @@ function addInput(nbInput) {
 
 
 function addPhoto(nbPhoto) {
-  let regexUrl = /[(http(s)?):\/\/(www\.)?\w-/=#%&\.\?]{2,}\.[a-z]{2,}([\w-/=#%&\.\?]*)/gi;
   let formHtml = document.querySelector('#btnEnvoieUrl');
 
   formHtml.addEventListener("click", function (event) {
     event.preventDefault();
 
       for (var i = 0; i < nbPhoto; i++) {
+        let regexUrl = /[(http(s)?):\/\/(www\.)?\w-/=#%&\.\?]{2,}\.[a-z]{2,}([\w-/=#%&\.\?]*)/gi;
         let galerie = document.querySelector('.galerieMosaique');
         let image = document.createElement("img");
         let url = document.forms["formulaireGallerie"]["image" + i].value
